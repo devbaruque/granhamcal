@@ -423,6 +423,29 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
 ---
 
+## 🆘 Sistema de Ajuda Interativo
+
+A calculadora inclui um **tutorial passo a passo** para usuários iniciantes!
+
+### Como Funciona
+
+1. **Botão "Precisa de ajuda?"** no canto inferior direito
+2. **Tutorial interativo** com 8 passos explicativos
+3. **Links diretos** para Investidor10, StatusInvest e outras fontes
+4. **Linguagem simples** sem jargões técnicos
+5. **Salva progresso** no navegador
+
+### O Que o Tutorial Ensina
+
+- De onde vêm os dados (LPA, VPA, etc.)
+- Como encontrar cada indicador
+- Dicas para preencher campos opcionais
+- Estimativas automáticas quando não souber o valor
+
+**Documentação completa:** [HELP_SYSTEM.md](HELP_SYSTEM.md)
+
+---
+
 ## 🎓 Referências e Leituras Recomendadas
 
 ### Livros

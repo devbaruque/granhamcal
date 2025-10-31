@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { initGA, trackCalculation, trackAnalysisGenerated, trackReset, trackInstagramClick } from './analytics';
+import HelpButton from './components/HelpButton';
+import TutorialPopover from './components/TutorialPopover';
 
 /**
  * Calculadora de Valor Justo de Ações - Benjamin Graham AI
@@ -20,6 +22,10 @@ function App() {
       initGA(measurementId);
     }
   }, []);
+
+  // Estado para o tutorial de ajuda
+  const [isTutorialOpen, setIsTutorialOpen] = useState(false);
+
   // Estados para os inputs do usuário
   const [lpa, setLpa] = useState('');
   const [vpa, setVpa] = useState('');
@@ -784,6 +790,15 @@ function App() {
           </p>
         </footer>
       </div>
+
+      {/* Botão de Ajuda Fixo */}
+      <HelpButton onClick={() => setIsTutorialOpen(true)} />
+
+      {/* Tutorial Interativo */}
+      <TutorialPopover 
+        isOpen={isTutorialOpen} 
+        onClose={() => setIsTutorialOpen(false)} 
+      />
     </div>
   );
 }
