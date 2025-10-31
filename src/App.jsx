@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
+import { initGA, trackCalculation, trackAnalysisGenerated, trackReset, trackInstagramClick } from './analytics';
 
 /**
  * Calculadora de Valor Justo de Ações - Benjamin Graham AI
@@ -12,6 +13,13 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
  */
 
 function App() {
+  // Inicializar Google Analytics quando o componente montar
+  useEffect(() => {
+    const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+    if (measurementId) {
+      initGA(measurementId);
+    }
+  }, []);
   // Estados para os inputs do usuário
   const [lpa, setLpa] = useState('');
   const [vpa, setVpa] = useState('');
@@ -317,6 +325,9 @@ function App() {
     setPrecoJustoCrescimento(precoCrescimento);
     setMargemSeguranca(margem);
     setMostrarResultados(true);
+    
+    // Rastrear cálculo no Google Analytics
+    trackCalculation(setor, precoDefensivo);
   };
 
   /**
@@ -329,6 +340,9 @@ function App() {
     }
     const analiseGerada = gerarAnalise();
     setAnalise(analiseGerada);
+    
+    // Rastrear geração de análise
+    trackAnalysisGenerated();
   };
 
   /**
@@ -354,6 +368,9 @@ function App() {
     setMargemSeguranca(null);
     setAnalise('');
     setMostrarResultados(false);
+    
+    // Rastrear reset
+    trackReset();
   };
 
   /**
@@ -748,6 +765,7 @@ function App() {
               href="https://www.instagram.com/luizrochadev/"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackInstagramClick}
               className="inline-block px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 ml-2"
             >
               <span className="flex items-center gap-2">
